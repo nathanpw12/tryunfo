@@ -84,6 +84,7 @@ class Form extends React.Component {
           data-testid="rare-input"
           value={ cardRare }
           onChange={ onInputChange }
+          className="display-flex-margin-18"
         >
           <option>normal</option>
           <option>raro</option>
@@ -105,6 +106,7 @@ class Form extends React.Component {
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
+          className="display-flex-margin-18"
         >
           Salvar
         </button>
