@@ -1,5 +1,5 @@
-import React from 'react';
 import ProtTypes from 'prop-types';
+import React from 'react';
 
 class Card extends React.Component {
   render() {

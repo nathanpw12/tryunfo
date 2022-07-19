@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
-//
+
 class App extends React.Component {
   constructor() {
     super();
@@ -9,22 +9,54 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
     };
+  }
+
+  saveBtnValidation = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3 } = this.state;
+    const maxValue = 90;
+    const sumValue = 210;
+
+    const sum = Number(cardAttr1)
+    + Number(cardAttr2)
+    + Number(cardAttr3)
+    <= sumValue;
+
+    const verify = cardName !== ''
+    && cardDescription !== ''
+    && cardImage !== '';
+
+    const min = Number(cardAttr1) >= 0
+    && Number(cardAttr2) >= 0
+    && Number(cardAttr3) >= 0;
+
+    const max = Number(cardAttr1) <= maxValue
+    && Number(cardAttr2) <= maxValue
+    && Number(cardAttr3) <= maxValue;
+    if (verify && min && max && sum) {
+      return false;
+    }
+    return true;
   }
 
   onInputChange = ({ target }) => {
     const { name, type, checked, value } = target;
-    const changeValue = type === 'checkbox' ? checked : value;
-    this.setState({
-      [name]: changeValue,
-    });
+    const values = type === 'checkbox' ? checked : value;
+    this.setState({ [name]: values },
+      () => this.setState({ isSaveButtonDisabled: this.saveBtnValidation() }));
   }
 
   render() {
@@ -41,9 +73,10 @@ class App extends React.Component {
       isSaveButtonDisabled,
       onSaveButtonClick,
     } = this.state;
+
     return (
       <div>
-        <h1 className="display-flex-margin-18">Tryunfo</h1>
+        <h1>Tryunfo</h1>
         <Form
           cardName={ cardName }
           cardDescription={ cardDescription }

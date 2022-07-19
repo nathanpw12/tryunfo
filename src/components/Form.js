@@ -21,6 +21,7 @@ class Form extends React.Component {
     return (
       <form>
         <label htmlFor="cardName">
+          Nome:
           <input
             id="cardName"
             name="cardName"
@@ -32,6 +33,7 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardDescription ">
+          Descrição:
           <input
             id="cardDescription"
             name="cardDescription"
@@ -43,6 +45,7 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardAttr1">
+          Atributo 1:
           <input
             id="cardAttr1"
             name="cardAttr1"
@@ -54,6 +57,7 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardAttr2">
+          Atributo 2:
           <input
             id="cardAttr2"
             name="cardAttr2"
@@ -65,6 +69,7 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardAttr3">
+          Atributo 3:
           <input
             id="cardAttr3"
             name="cardAttr3"
@@ -76,6 +81,7 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardImage">
+          Imagem:
           <input
             id="cardImage"
             name="cardImage"
@@ -87,6 +93,7 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardRare">
+          Raridade:
           <select
             id="cardRare"
             name="cardRare"
@@ -102,6 +109,7 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardTrunfo">
+          CardTrunfo:
           <input
             id="cardTrunfo"
             name="cardTrunfo"
