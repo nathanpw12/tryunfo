@@ -221,6 +221,7 @@ class App extends React.Component {
               .map((card) => (
                 <>
                   <Card
+                    id="oi"
                     key={ card.name }
                     cardName={ card.cardName }
                     cardDescription={ card.cardDescription }
@@ -236,7 +237,7 @@ class App extends React.Component {
                     data-testid="delete-button"
                     onClick={ () => this.removeCard(card) }
                   >
-                    Remover carta
+                    Excluir
                   </button>
                 </>
               ))}
