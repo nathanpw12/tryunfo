@@ -5,7 +5,6 @@ import Form from './components/Form';
 class App extends React.Component {
   constructor() {
     super();
-    this.onInputChange = this.onInputChange.bind(this);
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -18,7 +17,19 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       savedcard: [],
+      searchValue: '',
     };
+
+    this.onInputChange = this.onInputChange.bind(this);
+    this.handleSearchValue = this.handleSearchValue.bind(this);
+  }
+
+  handleSearchValue({ target }) {
+    const { searchValue } = this.state;
+    const { value } = target;
+    this.setState({
+      searchValue: value,
+    }, () => console.log(searchValue));
   }
 
   onSaveButtonClick = () => {
@@ -127,6 +138,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       onSaveButtonClick,
       savedcard,
+      searchValue,
     } = this.state;
 
     return (
@@ -159,28 +171,42 @@ class App extends React.Component {
           onSaveButtonClick={ onSaveButtonClick }
           onInputChange={ this.onInputChange }
         />
+
+        <label htmlFor="name-filter">
+          Pesquisar
+          <input
+            type="text"
+            name="name-filter"
+            id="name-filter"
+            data-testid="name-filter"
+            onChange={ this.handleSearchValue }
+          />
+        </label>
+
         <ul>
-          {savedcard.map((card) => (
-            <li key={ card.cardName }>
-              <Card
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
-              <button
-                type="button"
-                data-testid="delete-button"
-                onClick={ () => this.removeCard(card) }
-              >
-                Remover carta
-              </button>
-            </li>
-          ))}
+          {savedcard
+            .filter((card) => card.cardName.includes(searchValue))
+            .map((card) => (
+              <li key={ card.cardName }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  type="button"
+                  data-testid="delete-button"
+                  onClick={ () => this.removeCard(card) }
+                >
+                  Remover carta
+                </button>
+              </li>
+            ))}
         </ul>
       </div>
     );
