@@ -193,7 +193,7 @@ class App extends React.Component {
         <ul>
           { rareFilter === 'todas'
             ? savedcard
-              .filter((card) => card.cardName.toLowerCase().startsWith(searchValue))
+              .filter((card) => card.cardName.includes(searchValue))
               .map((card) => (
                 <li key={ card.cardName }>
                   <Card
@@ -211,7 +211,7 @@ class App extends React.Component {
                     data-testid="delete-button"
                     onClick={ () => this.removeCard(card) }
                   >
-                    Remover carta
+                    Remover Carta
                   </button>
                 </li>
               ))
@@ -221,7 +221,6 @@ class App extends React.Component {
               .map((card) => (
                 <>
                   <Card
-                    id="oi"
                     key={ card.name }
                     cardName={ card.cardName }
                     cardDescription={ card.cardDescription }
@@ -237,7 +236,7 @@ class App extends React.Component {
                     data-testid="delete-button"
                     onClick={ () => this.removeCard(card) }
                   >
-                    Excluir
+                    Remover Carta
                   </button>
                 </>
               ))}
